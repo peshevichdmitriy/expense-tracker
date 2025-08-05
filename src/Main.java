@@ -8,6 +8,7 @@ import Income.dao.IncomeDao;
 import Income.dao.IncomeDaoImpl;
 import service.MainService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,7 +44,25 @@ public class Main {
                                 DBESetup.createExpenseTable();
 
                                 Expense expense = new Expense();
-                                mainService.setExpense(expense, scanner);
+//                                mainService.setExpense(expense, scanner);
+                                System.out.println("Выберите account: ");
+                                for (ExpenseAccount c : ExpenseAccount.values()) {
+                                    System.out.println("- " + c.name());
+                                }
+                                expense.setAccount(ExpenseAccount.valueOf(scanner.nextLine().trim()));
+                                System.out.println("Date: ");
+                                expense.setDate(LocalDate.parse(scanner.nextLine().trim()));
+                                System.out.println("Amount: ");
+                                expense.setAmount(scanner.nextDouble());
+                                scanner.nextLine();
+                                System.out.println("Выберите category: ");
+                                for (ExpenseCategory c : ExpenseCategory.values()) {
+                                    System.out.println("- " + c.name());
+                                }
+                                expense.setCategory(ExpenseCategory.valueOf(scanner.nextLine().trim()));
+                                System.out.println("Discription: ");
+                                expense.setDescription(scanner.nextLine().trim());
+                                System.out.println("Создаю расход: " + expense);
                                 expenseDao.create(expense);
                             }
                             case "2" -> {

@@ -41,7 +41,7 @@ public class MainService {
         expense.setCategory(ExpenseCategory.valueOf(scanner.nextLine().trim()));
         System.out.println("Discription: ");
         expense.setDescription(scanner.nextLine().trim());
-        System.out.println("Создаю расход: " + expense);
+        System.out.println("Расход: " + expense);
     }
 
     public void setIncome(Income income, Scanner scanner){
