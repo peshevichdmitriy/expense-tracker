@@ -1,5 +1,3 @@
-package Main;
-
 import Expenses.dao.DBESetup;
 import Expenses.dao.ExpenseDao;
 import Expenses.dao.ExpenseDaoImpl;
@@ -8,7 +6,7 @@ import Income.model.*;
 import Income.dao.DBISetup;
 import Income.dao.IncomeDao;
 import Income.dao.IncomeDaoImpl;
-import Main.service.MainService;
+import service.MainService;
 
 import java.util.List;
 import java.util.Scanner;

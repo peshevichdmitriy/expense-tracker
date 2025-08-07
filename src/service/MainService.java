@@ -1,4 +1,4 @@
-package Main.service;
+package service;
 
 import Expenses.dao.ExpenseDao;
 import Expenses.model.Expense;
