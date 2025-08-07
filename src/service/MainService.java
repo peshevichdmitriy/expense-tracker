@@ -136,7 +136,7 @@ public class MainService {
         System.out.println("Сумма за период: " +sumAmount);
     }
 
-    public void printIncomeTable(List<Income> income) {
+    public void printIncomesTable(List<Income> incomes) {
         // Заголовки
         String[] headers = {"Account", "Date", "Amount", "Category", "Description"};
 
@@ -147,7 +147,7 @@ public class MainService {
         int wCategory = headers[3].length();
         int wDesc = headers[4].length();
 
-        for (Income e : income) {
+        for (Income e : incomes) {
             wAccount = Math.max(wAccount, e.getAccount().name().length());
             wDate = Math.max(wDate, e.getDate().toString().length());
             String amountStr = String.format("%.2f", e.getAmount());
@@ -173,7 +173,7 @@ public class MainService {
         System.out.printf(format, (Object[]) headers);
         System.out.println(separator);
         double sumAmount = 0;
-        for (Income e : income) {
+        for (Income e : incomes) {
             sumAmount +=e.getAmount();
             String desc = safe(e.getDescription());
             if (desc.length() > wDesc) {

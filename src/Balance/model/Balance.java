@@ -2,9 +2,15 @@ package Balance.model;
 
 public class Balance {
 
-    private String account;
+    private BalanceAccount account;
     private Double amount;
     private Double exchange_rate;
+
+    public Balance(BalanceAccount account, Double amount, Double exchange_rate) {
+        this.account = account;
+        this.amount = amount;
+        this.exchange_rate = exchange_rate;
+    }
 
     public Double getAmount() {
         return amount;
@@ -14,11 +20,11 @@ public class Balance {
         this.amount = amount;
     }
 
-    public String getAccount() {
+    public BalanceAccount getAccount() {
         return account;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(BalanceAccount account) {
         this.account = account;
     }
 

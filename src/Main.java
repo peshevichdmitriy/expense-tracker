@@ -6,6 +6,7 @@ import Income.model.*;
 import Income.dao.DBISetup;
 import Income.dao.IncomeDao;
 import Income.dao.IncomeDaoImpl;
+import Balance.service.BalanceService;
 import service.MainService;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class Main {
         ExpenseDao expenseDao = new ExpenseDaoImpl();
         IncomeDao incomeDao = new IncomeDaoImpl();
         MainService mainService = new MainService();
+        BalanceService balanceService = new BalanceService();
 
         while (true) {
             System.out.println("1. Добавить");
@@ -132,15 +134,15 @@ public class Main {
                                 mainService.printExpensesTable(expenses);
                             }
                             case "2" -> {
-                                List <Income> income = incomeDao.getMonth();
-                                mainService.printIncomeTable(income);
+                                List <Income> incomes = incomeDao.getMonth();
+                                mainService.printIncomesTable(incomes);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }
                     }
                 }
                 case "6" -> {
-
+                    System.out.println("BYN: " + balanceService.calculateBalanceBYN(expenseDao, incomeDao));
                 }
                 case "7" -> {
 
