@@ -1,3 +1,5 @@
+package Main;
+
 import Expenses.dao.DBESetup;
 import Expenses.dao.ExpenseDao;
 import Expenses.dao.ExpenseDaoImpl;
@@ -6,7 +8,7 @@ import Income.model.*;
 import Income.dao.DBISetup;
 import Income.dao.IncomeDao;
 import Income.dao.IncomeDaoImpl;
-import service.MainService;
+import Main.service.MainService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -128,12 +130,12 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                List <Expense> list = expenseDao.getMonth();
-                                System.out.println(list);
+                                List <Expense> expenses = expenseDao.getMonth();
+                                mainService.printExpensesTable(expenses);
                             }
                             case "2" -> {
-                                List <Income> list = incomeDao.getMonth();
-                                System.out.println(list);
+                                List <Income> income = incomeDao.getMonth();
+                                mainService.printIncomeTable(income);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }

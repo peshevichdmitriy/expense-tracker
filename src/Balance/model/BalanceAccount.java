@@ -1,4 +1,4 @@
-package Balance;
+package Balance.model;
 
 public enum BalanceAccount {
     BYN,
