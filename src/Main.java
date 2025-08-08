@@ -130,11 +130,11 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                List <Expense> expenses = expenseDao.getMonth();
+                                List <Expense> expenses = expenseDao.getAll();
                                 mainService.printExpensesTable(expenses);
                             }
                             case "2" -> {
-                                List <Income> incomes = incomeDao.getMonth();
+                                List <Income> incomes = incomeDao.getAll();
                                 mainService.printIncomesTable(incomes);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
@@ -143,6 +143,7 @@ public class Main {
                 }
                 case "6" -> {
                     System.out.println("BYN: " + balanceService.calculateBalanceBYN(expenseDao, incomeDao));
+                    System.out.println("USD: " + balanceService.calculateBalanceUSD(expenseDao, incomeDao));
                 }
                 case "7" -> {
 

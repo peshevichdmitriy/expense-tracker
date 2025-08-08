@@ -88,7 +88,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
     }
 
     @Override
-    public List<Expense> getMonth() {
+    public List<Expense> getAll() {
         List<Expense> list = new ArrayList<>();
 
         String sql = "SELECT account, date, amount, category, description FROM expenses ORDER BY date";

@@ -10,5 +10,5 @@ public interface IncomeDao {
     Income read(Long id);
     void update(Income income, Long id);
     void delete(Long id);
-    List<Income> getMonth();
+    List<Income> getAll();
 }

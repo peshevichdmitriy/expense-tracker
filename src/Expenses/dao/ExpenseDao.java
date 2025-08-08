@@ -9,5 +9,5 @@ public interface ExpenseDao {
     Expense read(Long id);
     void update(Expense expense, Long id);
     void delete(Long id);
-    List<Expense> getMonth();
+    List<Expense> getAll();
 }

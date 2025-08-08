@@ -89,7 +89,7 @@ public class IncomeDaoImpl implements IncomeDao{
     }
 
     @Override
-    public List<Income> getMonth() {
+    public List<Income> getAll() {
         List<Income> list = new ArrayList<>();
 
         String sql = "SELECT account, date, amount, category, description FROM income ORDER BY date";
