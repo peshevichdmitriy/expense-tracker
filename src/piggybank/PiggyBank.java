@@ -1,4 +1,4 @@
-package PiggyBank;
+package piggybank;
 
 public class PiggyBank {
 }
