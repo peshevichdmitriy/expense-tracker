@@ -18,9 +18,9 @@ public class Transaction {
         this.description = description;
     }*/
 
-    public ExpenseAccount getAccount() { return account; }
+    public Account getAccount() { return account; }
 
-    public void setAccount(ExpenseAccount account) { this.account = account; }
+    public void setAccount(Account account) { this.account = account; }
 
     public LocalDate getDate() {
         return date;
@@ -38,11 +38,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public ExpenseCategory getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(ExpenseCategory category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
