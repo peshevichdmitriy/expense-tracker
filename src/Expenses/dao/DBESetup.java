@@ -11,7 +11,7 @@ public class DBESetup {
                     account TEXT,
                     date TEXT,
                     amount REAL,
-                    category TEXT, 
+                    category TEXT,
                     description TEXT
                 );
                 """;

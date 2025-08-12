@@ -14,6 +14,9 @@
       <assistant-state connection-id="1d464220-4641-4c5c-bd05-97cfee9e0e0c" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
+      <assistant-state connection-id="eed33c86-e7fe-40d8-9420-29c769a6accd" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
       <assistant-state connection-id="1359f83e-0f0c-4558-b49c-4b303b18ca79" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>

@@ -174,7 +174,6 @@ public class MainService {
         System.out.println(separator);
         double sumAmount = 0;
         for (Income e : incomes) {
-            sumAmount +=e.getAmount();
             String desc = safe(e.getDescription());
             if (desc.length() > wDesc) {
                 desc = desc.substring(0, wDesc - 1) + "…";
@@ -186,6 +185,10 @@ public class MainService {
                     e.getCategory().name(),
                     desc);
         }
+        sumAmount = incomes.stream()
+                .filter(e -> e.getAccount() == IncomeAccount.BYN)
+                .mapToDouble(Income::getAmount)
+                .sum();
         System.out.println(separator);
         System.out.println("Сумма за период: " +sumAmount);
     }
