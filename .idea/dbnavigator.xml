@@ -11,25 +11,40 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
+      <assistant-state connection-id="5b1db1c4-5adf-4b62-bcd4-25af568c85ed" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
       <assistant-state connection-id="1d464220-4641-4c5c-bd05-97cfee9e0e0c" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
-      <assistant-state connection-id="eed33c86-e7fe-40d8-9420-29c769a6accd" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="e44bd858-8237-4056-b447-632cf823fec6" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
       <assistant-state connection-id="1359f83e-0f0c-4558-b49c-4b303b18ca79" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
-      <assistant-state connection-id="3eefd9fa-c72b-4fc6-a875-a90dc38cc171" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="9b08096a-fd93-48ca-ba26-54f6f9020398" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
-      <assistant-state connection-id="9b08096a-fd93-48ca-ba26-54f6f9020398" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="25230b90-25e2-4f1c-aca4-110725eae87f" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
+      <assistant-state connection-id="18da94b9-a44a-4a52-83d5-2064b82f74e4" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
+      <assistant-state connection-id="eed33c86-e7fe-40d8-9420-29c769a6accd" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
+      <assistant-state connection-id="e998d1e6-fc7a-4bdc-bf97-5b65fe487e76" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
+      <assistant-state connection-id="3eefd9fa-c72b-4fc6-a875-a90dc38cc171" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
       <assistant-state connection-id="675dc21d-f434-4948-8fb5-d0da02918a0e" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
-      <assistant-state connection-id="18da94b9-a44a-4a52-83d5-2064b82f74e4" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+      <assistant-state connection-id="33b7d281-5763-4717-bee5-2b458ba5432b" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
         <conversations />
       </assistant-state>
     </assistants>

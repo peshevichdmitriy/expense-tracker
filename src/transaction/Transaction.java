@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Transaction {
 
     private Integer ID;
+    private Type type;
     private Account account;
     private LocalDate date;
     private Double amount;
@@ -22,6 +23,10 @@ public class Transaction {
     public Integer getID() { return ID; }
 
     public void setID(Integer ID) { this.ID = ID; }
+
+    public Type getType() { return type; }
+
+    public void setType(Type type) { this.type = type; }
 
     public Account getAccount() { return account; }
 
@@ -61,8 +66,10 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction {" +
-                "account='" + account + '\'' +
+        return "Transaction{" +
+                "ID=" + ID +
+                ", type=" + type +
+                ", account=" + account +
                 ", date=" + date +
                 ", amount=" + amount +
                 ", category=" + category +

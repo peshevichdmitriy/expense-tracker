@@ -6,8 +6,9 @@ import java.sql.Statement;
 public class DBSetup {
     public static void createExpenseTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS expenses (
+                CREATE TABLE IF NOT EXISTS "transaction" (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    type TEXT,
                     account TEXT,
                     date TEXT,
                     amount REAL,

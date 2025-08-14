@@ -2,8 +2,6 @@ import dao.DBSetup;
 import dao.TransactionDao;
 import dao.TransactionDaoImpl;
 import transaction.*;
-import delete.Income.model.*;
-import delete.Income.dao.DBISetup;
 
 import service.BalanceService;
 import service.MainService;
@@ -140,8 +138,8 @@ public class Main {
                     }
                 }
                 case "6" -> {
-                    System.out.println("BYN: " + balanceService.calculateBalanceBYN(transactionDao));
-                    System.out.println("USD: " + balanceService.calculateBalanceUSD(transactionDao));
+//                    System.out.println("BYN: " + balanceService.calculateBalanceBYN(transactionDao));
+//                    System.out.println("USD: " + balanceService.calculateBalanceUSD(transactionDao));
                 }
                 case "7" -> {
 
