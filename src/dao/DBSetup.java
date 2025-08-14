@@ -1,12 +1,12 @@
-package Income.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class DBISetup {
+public class DBSetup {
     public static void createExpenseTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS income (
+                CREATE TABLE IF NOT EXISTS expenses (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     account TEXT,
                     date TEXT,
@@ -15,7 +15,7 @@ public class DBISetup {
                     description TEXT
                 );
                 """;
-        try (Connection conn = DBI.connect(); Statement stmt = conn.createStatement()) {
+        try (Connection conn = DB.connect(); Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,19 +4,24 @@ import java.time.LocalDate;
 
 public class Transaction {
 
+    private Integer ID;
     private Account account;
     private LocalDate date;
     private Double amount;
     private Category category;
     private String description;
 
-    /*public Expense(ExpenseAccount account, LocalDate date, Double amount, ExpenseCategory category, String description) {
+    /*public Transaction(ExpenseAccount account, LocalDate date, Double amount, ExpenseCategory category, String description) {
         this.account = account;
         this.date = date;
         this.amount = amount;
         this.category = category;
         this.description = description;
     }*/
+
+    public Integer getID() { return ID; }
+
+    public void setID(Integer ID) { this.ID = ID; }
 
     public Account getAccount() { return account; }
 
@@ -56,7 +61,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Expense{" +
+        return "Transaction {" +
                 "account='" + account + '\'' +
                 ", date=" + date +
                 ", amount=" + amount +

@@ -1,12 +1,11 @@
-import Expenses.dao.DBESetup;
-import Expenses.dao.ExpenseDao;
-import Expenses.dao.ExpenseDaoImpl;
-import Expenses.model.*;
-import Income.model.*;
-import Income.dao.DBISetup;
-import Income.dao.IncomeDao;
-import Income.dao.IncomeDaoImpl;
-import Balance.service.BalanceService;
+import dao.DBSetup;
+import dao.TransactionDao;
+import dao.TransactionDaoImpl;
+import transaction.*;
+import delete.Income.model.*;
+import delete.Income.dao.DBISetup;
+
+import service.BalanceService;
 import service.MainService;
 
 import java.util.List;
@@ -15,8 +14,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ExpenseDao expenseDao = new ExpenseDaoImpl();
-        IncomeDao incomeDao = new IncomeDaoImpl();
+        TransactionDao transactionDao = new TransactionDaoImpl();
         MainService mainService = new MainService();
         BalanceService balanceService = new BalanceService();
 
@@ -42,18 +40,18 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                DBESetup.createExpenseTable();
+                                DBSetup.createExpenseTable();
 
-                                Expense expense = new Expense();
-                                mainService.setExpense(expense, scanner);
-                                expenseDao.create(expense);
+                                Transaction transaction = new Transaction();
+                                mainService.setTransaction(transaction, scanner);
+                                transactionDao.create(transaction);
                             }
                             case "2" -> {
-                                DBISetup.createExpenseTable();
+                                DBSetup.createExpenseTable();
 
-                                Income income = new Income();
-                                mainService.setIncome(income, scanner);
-                                incomeDao.create(income);
+                                Transaction transaction = new Transaction();
+                                mainService.setTransaction(transaction, scanner);
+                                transactionDao.create(transaction);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }
@@ -68,10 +66,10 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                mainService.readExpense(scanner, expenseDao);
+                                mainService.readTransaction(scanner, transactionDao);
                             }
                             case "2" -> {
-                                mainService.readIncome(scanner, incomeDao);
+                                mainService.readTransaction(scanner, transactionDao);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }
@@ -86,16 +84,16 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                Long id = mainService.readExpense(scanner, expenseDao);
-                                Expense expense = expenseDao.read(id);
-                                mainService.setExpense(expense, scanner);
-                                expenseDao.update(expense, id);
+                                Long id = mainService.readTransaction(scanner, transactionDao);
+                                Transaction transaction = transactionDao.read(id);
+                                mainService.setTransaction(transaction, scanner);
+                                transactionDao.update(transaction, id);
                             }
                             case "2" -> {
-                                Long id = mainService.readIncome(scanner, incomeDao);
-                                Income income = incomeDao.read(id);
-                                mainService.setIncome(income, scanner);
-                                incomeDao.update(income, id);
+                                Long id = mainService.readTransaction(scanner, transactionDao);
+                                Transaction transaction = transactionDao.read(id);
+                                mainService.setTransaction(transaction, scanner);
+                                transactionDao.update(transaction, id);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }
@@ -110,12 +108,12 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                Long id = mainService.readExpense(scanner, expenseDao);
-                                expenseDao.delete(id);
+                                Long id = mainService.readTransaction(scanner, transactionDao);
+                                transactionDao.delete(id);
                             }
                             case "2" -> {
-                                Long id = mainService.readIncome(scanner, incomeDao);
-                                incomeDao.delete(id);
+                                Long id = mainService.readTransaction(scanner, transactionDao);
+                                transactionDao.delete(id);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }
@@ -130,20 +128,20 @@ public class Main {
 
                         switch (inner){
                             case "1" -> {
-                                List <Expense> expenses = expenseDao.getAll();
-                                mainService.printExpensesTable(expenses);
+                                List <Transaction> transactions = transactionDao.getAll();
+                                mainService.printTransactionTable(transactions);
                             }
                             case "2" -> {
-                                List <Income> incomes = incomeDao.getAll();
-                                mainService.printIncomesTable(incomes);
+                                List <Transaction> transactions = transactionDao.getAll();
+                                mainService.printTransactionTable(transactions);
                             }
                             default -> System.out.println("Неверный выбор, введите 1, 2 или 0.");
                         }
                     }
                 }
                 case "6" -> {
-                    System.out.println("BYN: " + balanceService.calculateBalanceBYN(expenseDao, incomeDao));
-                    System.out.println("USD: " + balanceService.calculateBalanceUSD(expenseDao, incomeDao));
+                    System.out.println("BYN: " + balanceService.calculateBalanceBYN(transactionDao));
+                    System.out.println("USD: " + balanceService.calculateBalanceUSD(transactionDao));
                 }
                 case "7" -> {
 

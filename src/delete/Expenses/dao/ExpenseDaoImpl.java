@@ -1,8 +1,8 @@
-package Expenses.dao;
+package delete.Expenses.dao;
 
-import Expenses.model.Expense;
-import Expenses.model.ExpenseAccount;
-import Expenses.model.ExpenseCategory;
+import delete.Expenses.model.Transaction;
+import delete.Expenses.model.ExpenseAccount;
+import delete.Expenses.model.ExpenseCategory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ExpenseDaoImpl implements ExpenseDao {
     @Override
-    public void create(Expense expense) {
+    public void create(Transaction expense) {
         String sql = "INSERT INTO expenses (account, date, amount, category, description) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DBE.connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -30,7 +30,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
     }
 
     @Override
-    public Expense read(Long id) {
+    public Transaction read(Long id) {
         String sql = "SELECT id, account, date, amount, category, description FROM expenses WHERE id = ?";
 
         try (Connection conn = DBE.connect();
@@ -39,7 +39,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    Expense expense = new Expense();
+                    Transaction expense = new Transaction();
                     expense.setAccount(ExpenseAccount.valueOf(rs.getString("account")));
                     expense.setDate(LocalDate.parse(rs.getString("date")));
                     expense.setAmount(rs.getDouble("amount"));
@@ -55,7 +55,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
     }
 
     @Override
-    public void update(Expense expense, Long id) {
+    public void update(Transaction expense, Long id) {
         String sql = "UPDATE expenses SET account = ?, date = ?, amount = ?, category = ?, description = ? WHERE id = ?";
 
         try (Connection conn = DBE.connect();
@@ -88,8 +88,8 @@ public class ExpenseDaoImpl implements ExpenseDao {
     }
 
     @Override
-    public List<Expense> getAll() {
-        List<Expense> list = new ArrayList<>();
+    public List<Transaction> getAll() {
+        List<Transaction> list = new ArrayList<>();
 
         String sql = "SELECT account, date, amount, category, description FROM expenses ORDER BY date";
 
@@ -98,7 +98,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Expense expense = new Expense();
+                Transaction expense = new Transaction();
                 expense.setAccount(ExpenseAccount.valueOf(rs.getString("account")));
                 expense.setDate(LocalDate.parse(rs.getString("date")));
                 expense.setAmount(rs.getDouble("amount"));

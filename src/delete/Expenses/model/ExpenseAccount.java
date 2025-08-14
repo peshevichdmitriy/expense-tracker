@@ -1,4 +1,4 @@
-package Expenses.model;
+package delete.Expenses.model;
 
 public enum ExpenseAccount {
     BYN,

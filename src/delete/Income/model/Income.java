@@ -1,4 +1,4 @@
-package Income.model;
+package delete.Income.model;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,7 @@ public class Income {
     private IncomeCategory category;
     private String description;
 
-    /*public Income(String account, LocalDate date, Double amount, IncomeCategory category, String description) {
+    /*public delete.Income(String account, LocalDate date, Double amount, IncomeCategory category, String description) {
         this.account = account;
         this.date = date;
         this.amount = amount;
@@ -56,7 +56,7 @@ public class Income {
 
     @Override
     public String toString() {
-        return "Income{" +
+        return "delete.Income{" +
                 "account='" + account + '\'' +
                 ", date=" + date +
                 ", amount=" + amount +

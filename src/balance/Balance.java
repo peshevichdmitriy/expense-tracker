@@ -1,12 +1,14 @@
-package Balance.model;
+package balance;
+
+import transaction.Account;
 
 public class Balance {
 
-    private BalanceAccount account;
+    private Account account;
     private Double amount;
     private Double exchange_rate;
 
-    public Balance(BalanceAccount account, Double amount, Double exchange_rate) {
+    public Balance(Account account, Double amount, Double exchange_rate) {
         this.account = account;
         this.amount = amount;
         this.exchange_rate = exchange_rate;
@@ -20,11 +22,11 @@ public class Balance {
         this.amount = amount;
     }
 
-    public BalanceAccount getAccount() {
+    public Account getAccount() {
         return account;
     }
 
-    public void setAccount(BalanceAccount account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 

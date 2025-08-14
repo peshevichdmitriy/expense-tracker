@@ -1,13 +1,16 @@
 package service;
 
-import Expenses.dao.ExpenseDao;
-import Expenses.model.Expense;
-import Expenses.model.ExpenseAccount;
-import Expenses.model.ExpenseCategory;
-import Income.dao.IncomeDao;
-import Income.model.Income;
-import Income.model.IncomeAccount;
-import Income.model.IncomeCategory;
+import dao.TransactionDao;
+import delete.Expenses.dao.ExpenseDao;
+import transaction.Account;
+import transaction.Category;
+import transaction.Transaction;
+import delete.Expenses.model.ExpenseAccount;
+import delete.Expenses.model.ExpenseCategory;
+import delete.Income.dao.IncomeDao;
+import delete.Income.model.Income;
+import delete.Income.model.IncomeAccount;
+import delete.Income.model.IncomeCategory;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,76 +27,50 @@ public class MainService {
         return inner;
     }
 
-    public void setExpense(Expense expense, Scanner scanner){
+    public void setTransaction(Transaction transaction, Scanner scanner){
         System.out.println("Выберите account: ");
-        for (ExpenseAccount c : ExpenseAccount.values()) {
+        for (Account c : Account.values()) {
             System.out.println("- " + c.name());
         }
-        expense.setAccount(ExpenseAccount.valueOf(scanner.nextLine().trim()));
+        transaction.setAccount(Account.valueOf(scanner.nextLine().trim()));
         System.out.println("Date: ");
-        expense.setDate(LocalDate.parse(scanner.nextLine().trim()));
+        transaction.setDate(LocalDate.parse(scanner.nextLine().trim()));
         System.out.println("Amount: ");
-        expense.setAmount(scanner.nextDouble());
+        transaction.setAmount(scanner.nextDouble());
         scanner.nextLine();
         System.out.println("Выберите category: ");
-        for (ExpenseCategory c : ExpenseCategory.values()) {
+        for (Category c : Category.values()) {
             System.out.println("- " + c.name());
         }
-        expense.setCategory(ExpenseCategory.valueOf(scanner.nextLine().trim()));
+        transaction.setCategory(Category.valueOf(scanner.nextLine().trim()));
         System.out.println("Discription: ");
-        expense.setDescription(scanner.nextLine().trim());
-        System.out.println("Расход: " + expense);
+        transaction.setDescription(scanner.nextLine().trim());
+        System.out.println("Транзакция: " + transaction);
     }
 
-    public void setIncome(Income income, Scanner scanner){
-        System.out.println("Выберите account: ");
-        for (IncomeAccount c : IncomeAccount.values()) {
-            System.out.println("- " + c.name());
-        }
-        income.setAccount(IncomeAccount.valueOf(scanner.nextLine().trim()));
-        System.out.println("Date: ");
-        income.setDate(LocalDate.parse(scanner.nextLine().trim()));
-        System.out.println("Amount: ");
-        income.setAmount(scanner.nextDouble());
-        scanner.nextLine();
-        System.out.println("Выберите category: ");
-        for (IncomeCategory c : IncomeCategory.values()) {
-            System.out.println("- " + c.name());
-        }
-        income.setCategory(IncomeCategory.valueOf(scanner.nextLine().trim()));
-        System.out.println("Discription: ");
-        income.setDescription(scanner.nextLine().trim());
-        System.out.println("Пополнение: " + income);
-    }
-
-    public Long readExpense(Scanner scanner, ExpenseDao expenseDao){
-        System.out.print("Expense ID: ");
+    public Long readTransaction(Scanner scanner, TransactionDao transactionDao){
+        System.out.print("Transaction ID: ");
         Long id = Long.parseLong(scanner.nextLine().trim());
-        Expense expense = expenseDao.read(id);
-        System.out.println(expense != null ? expense : "Expense not found.");
+        Transaction transaction = transactionDao.read(id);
+        System.out.println(transaction != null ? transaction : "Transaction not found.");
         return id;
     }
 
-    public Long readIncome(Scanner scanner, IncomeDao incomeDao){
-        System.out.print("Income ID: ");
-        Long id = Long.parseLong(scanner.nextLine().trim());
-        Income income = incomeDao.read(id);
-        System.out.println(income != null ? income : "Income not found.");
-        return id;
-    }
-
-    public void printExpensesTable(List<Expense> expenses) {
+    public void printTransactionTable(List<Transaction> transactions) {
         // Заголовки
-        String[] headers = {"Account", "Date", "Amount", "Category", "Description"};
+        String[] headers = {"ID","Account", "Date", "Amount", "Category", "Description"};
 
         // Вычислим ширины колонок — минимум по заголовку
-        int wAccount = headers[0].length();
-        int wDate = headers[1].length();
-        int wAmount = headers[2].length();
-        int wCategory = headers[3].length();
-        int wDesc = headers[4].length();
+        int wID = headers[0].length();
+        int wAccount = headers[1].length();
+        int wDate = headers[2].length();
+        int wAmount = headers[3].length();
+        int wCategory = headers[4].length();
+        int wDesc = headers[5].length();
 
-        for (Expense e : expenses) {
+        for (Transaction e : transactions) {
+            String idStr = String.valueOf(e.getID());
+            wID = Math.max(wID, idStr.length());
             wAccount = Math.max(wAccount, e.getAccount().name().length());
             wDate = Math.max(wDate, e.getDate().toString().length());
             String amountStr = String.format("%.2f", e.getAmount());
@@ -103,11 +80,12 @@ public class MainService {
         }
 
         // Форматная строка
-        String format = String.format("%%-%ds | %%-%ds | %%%ds | %%-%ds | %%-%ds%n",
-                wAccount, wDate, wAmount, wCategory, wDesc);
+        String format = String.format("%%-%ds | %%-%ds | %%-%ds | %%%ds | %%-%ds | %%-%ds%n",
+               wID, wAccount, wDate, wAmount, wCategory, wDesc);
 
         // Разделитель
         String separator = String.join("-+-",
+                repeat('-', wID),
                 repeat('-', wAccount),
                 repeat('-', wDate),
                 repeat('-', wAmount),
@@ -119,7 +97,7 @@ public class MainService {
         System.out.printf(format, (Object[]) headers);
         System.out.println(separator);
         double sumAmount = 0;
-        for (Expense e : expenses) {
+        for (Transaction e : transactions) {
             sumAmount +=e.getAmount();
             String desc = safe(e.getDescription());
             if (desc.length() > wDesc) {
@@ -132,63 +110,6 @@ public class MainService {
                     e.getCategory().name(),
                     desc);
         }
-        System.out.println(separator);
-        System.out.println("Сумма за период: " +sumAmount);
-    }
-
-    public void printIncomesTable(List<Income> incomes) {
-        // Заголовки
-        String[] headers = {"Account", "Date", "Amount", "Category", "Description"};
-
-        // Вычислим ширины колонок — минимум по заголовку
-        int wAccount = headers[0].length();
-        int wDate = headers[1].length();
-        int wAmount = headers[2].length();
-        int wCategory = headers[3].length();
-        int wDesc = headers[4].length();
-
-        for (Income e : incomes) {
-            wAccount = Math.max(wAccount, e.getAccount().name().length());
-            wDate = Math.max(wDate, e.getDate().toString().length());
-            String amountStr = String.format("%.2f", e.getAmount());
-            wAmount = Math.max(wAmount, amountStr.length());
-            wCategory = Math.max(wCategory, e.getCategory().name().length());
-            wDesc = Math.max(wDesc, safe(e.getDescription()).length());
-        }
-
-        // Форматная строка
-        String format = String.format("%%-%ds | %%-%ds | %%%ds | %%-%ds | %%-%ds%n",
-                wAccount, wDate, wAmount, wCategory, wDesc);
-
-        // Разделитель
-        String separator = String.join("-+-",
-                repeat('-', wAccount),
-                repeat('-', wDate),
-                repeat('-', wAmount),
-                repeat('-', wCategory),
-                repeat('-', wDesc)
-        );
-
-        // Печать
-        System.out.printf(format, (Object[]) headers);
-        System.out.println(separator);
-        double sumAmount = 0;
-        for (Income e : incomes) {
-            String desc = safe(e.getDescription());
-            if (desc.length() > wDesc) {
-                desc = desc.substring(0, wDesc - 1) + "…";
-            }
-            System.out.printf(format,
-                    e.getAccount().name(),
-                    e.getDate().toString(),
-                    String.format("%.2f", e.getAmount()),
-                    e.getCategory().name(),
-                    desc);
-        }
-        sumAmount = incomes.stream()
-                .filter(e -> e.getAccount() == IncomeAccount.BYN)
-                .mapToDouble(Income::getAmount)
-                .sum();
         System.out.println(separator);
         System.out.println("Сумма за период: " +sumAmount);
     }

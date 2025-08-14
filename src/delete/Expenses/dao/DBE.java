@@ -1,4 +1,4 @@
-package Expenses.dao;
+package delete.Expenses.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

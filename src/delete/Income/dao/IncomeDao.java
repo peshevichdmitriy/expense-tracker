@@ -1,7 +1,7 @@
-package Income.dao;
+package delete.Income.dao;
 
 
-import Income.model.Income;
+import delete.Income.model.Income;
 
 import java.util.List;
 

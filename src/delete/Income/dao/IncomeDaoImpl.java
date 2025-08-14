@@ -1,9 +1,8 @@
-package Income.dao;
+package delete.Income.dao;
 
-import Expenses.dao.DBE;
-import Income.model.Income;
-import Income.model.IncomeAccount;
-import Income.model.IncomeCategory;
+import delete.Income.model.Income;
+import delete.Income.model.IncomeAccount;
+import delete.Income.model.IncomeCategory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

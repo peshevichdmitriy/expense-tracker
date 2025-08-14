@@ -1,8 +1,8 @@
-package Expenses.model;
+package delete.Expenses.model;
 
 import java.time.LocalDate;
 
-public class Expense {
+public class Transaction {
 
     private ExpenseAccount account;
     private LocalDate date;
@@ -10,7 +10,7 @@ public class Expense {
     private ExpenseCategory category;
     private String description;
 
-    /*public Expense(ExpenseAccount account, LocalDate date, Double amount, ExpenseCategory category, String description) {
+    /*public Transaction(ExpenseAccount account, LocalDate date, Double amount, ExpenseCategory category, String description) {
         this.account = account;
         this.date = date;
         this.amount = amount;
@@ -56,7 +56,7 @@ public class Expense {
 
     @Override
     public String toString() {
-        return "Expense{" +
+        return "Transaction{" +
                 "account='" + account + '\'' +
                 ", date=" + date +
                 ", amount=" + amount +

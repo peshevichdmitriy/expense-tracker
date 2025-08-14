@@ -1,4 +1,4 @@
-package Income.model;
+package delete.Income.model;
 
 public enum IncomeCategory {
     ЗП,
