@@ -11,6 +11,7 @@ import delete.Income.dao.IncomeDao;
 import delete.Income.model.Income;
 import delete.Income.model.IncomeAccount;
 import delete.Income.model.IncomeCategory;
+import transaction.Type;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,6 +29,11 @@ public class MainService {
     }
 
     public void setTransaction(Transaction transaction, Scanner scanner){
+        System.out.println("Выберите type: ");
+        for (Type c : Type.values()) {
+            System.out.println("- " + c.name());
+        }
+        transaction.setType(Type.valueOf(scanner.nextLine().trim()));
         System.out.println("Выберите account: ");
         for (Account c : Account.values()) {
             System.out.println("- " + c.name());
@@ -58,19 +64,21 @@ public class MainService {
 
     public void printTransactionTable(List<Transaction> transactions) {
         // Заголовки
-        String[] headers = {"ID","Account", "Date", "Amount", "Category", "Description"};
+        String[] headers = {"ID", "Type", "Account", "Date", "Amount", "Category", "Description"};
 
         // Вычислим ширины колонок — минимум по заголовку
         int wID = headers[0].length();
-        int wAccount = headers[1].length();
-        int wDate = headers[2].length();
-        int wAmount = headers[3].length();
-        int wCategory = headers[4].length();
-        int wDesc = headers[5].length();
+        int wType = headers[1].length();
+        int wAccount = headers[2].length();
+        int wDate = headers[3].length();
+        int wAmount = headers[4].length();
+        int wCategory = headers[5].length();
+        int wDesc = headers[6].length();
 
         for (Transaction e : transactions) {
             String idStr = String.valueOf(e.getID());
             wID = Math.max(wID, idStr.length());
+            wType = Math.max(wType, e.getType().name().length());
             wAccount = Math.max(wAccount, e.getAccount().name().length());
             wDate = Math.max(wDate, e.getDate().toString().length());
             String amountStr = String.format("%.2f", e.getAmount());
@@ -80,12 +88,13 @@ public class MainService {
         }
 
         // Форматная строка
-        String format = String.format("%%-%ds | %%-%ds | %%-%ds | %%%ds | %%-%ds | %%-%ds%n",
-               wID, wAccount, wDate, wAmount, wCategory, wDesc);
+        String format = String.format("%%%ds | %%-%ds | %%-%ds | %%-%ds | %%%ds | %%-%ds | %%-%ds%n",
+               wID, wType, wAccount, wDate, wAmount, wCategory, wDesc);
 
         // Разделитель
         String separator = String.join("-+-",
                 repeat('-', wID),
+                repeat('-', wType),
                 repeat('-', wAccount),
                 repeat('-', wDate),
                 repeat('-', wAmount),
@@ -96,14 +105,14 @@ public class MainService {
         // Печать
         System.out.printf(format, (Object[]) headers);
         System.out.println(separator);
-        double sumAmount = 0;
         for (Transaction e : transactions) {
-            sumAmount +=e.getAmount();
             String desc = safe(e.getDescription());
             if (desc.length() > wDesc) {
                 desc = desc.substring(0, wDesc - 1) + "…";
             }
             System.out.printf(format,
+                    e.getID(),
+                    e.getType().name(),
                     e.getAccount().name(),
                     e.getDate().toString(),
                     String.format("%.2f", e.getAmount()),
@@ -111,7 +120,6 @@ public class MainService {
                     desc);
         }
         System.out.println(separator);
-        System.out.println("Сумма за период: " +sumAmount);
     }
 
     // Вспомогательные
